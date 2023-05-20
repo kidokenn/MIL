@@ -1,0 +1,269 @@
+/* ここから下に記載していく */
+
+body {
+    width:1200px;
+    text-align: center;
+    font-size: 16px;
+}
+
+#header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.main-nav {
+    display: flex;
+}
+
+.main-nav li {
+    font-size: 21px;
+    margin-top: 50px;
+    margin-right: 50px;
+    margin-bottom: 50px;
+}
+
+#header img {
+    width:30%;
+    height:30%;
+    margin-left:50px;
+    margin-top:20px;
+    margin-bottom:10px;
+}
+
+#mainvisual {
+    margin: 0 auto;
+    position:relative;
+}
+
+#mainvisual img {
+    width:1200px;
+}
+
+#mainvisual .wordings {
+    width:1200px;
+    color:white;
+    left: 50%;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%,-50%);
+}
+
+#mainvisual .wordings h1 {
+    font-size:40px;
+    font-weight: bold;
+    padding:15px 0;
+}
+
+#mainvisual .wordings h2 {
+    font-size:30px;
+    padding:15px 0;
+}
+
+#about {
+    padding-top: 60px;
+}
+
+#about .flex {
+    display: flex;
+}
+
+#about .flex img {
+    width:300px;
+}
+
+#course {
+    padding-top: 60px;
+}
+
+#course .container1 {
+    display: flex;
+    align-items: center;
+    background-color: #fafafa;
+}
+
+#course .container2{
+    display: flex;
+    align-items: center;
+    background-color: #fafafa;
+}
+
+#course .container3 {
+    display: flex;
+    align-items: center;
+    background-color: #fafafa;
+}
+
+#course img {
+    width:600px;
+}
+
+#course .wordings1 {
+    width:600px;
+    text-align: left;
+    padding-left: 50px;
+}
+
+#course .wordings2 {
+    width:600px;
+    text-align: right;
+    padding-right: 50px;
+}
+
+#news {
+    padding-top: 60px;
+}
+
+#news .threedays {
+    display: grid;
+    gap: 30px;
+    grid-template-columns: 300px 300px 300px;
+    place-content: center;
+}
+
+#news img {
+    width: 300px;
+}
+
+#news .oneday {
+    width: 300px;
+    text-align: left;
+}
+
+.oneday:hover {
+    background-color:#ffd61a;
+}
+
+#access {
+    background-color: #fafafa;
+    margin-top:60px;
+    padding-top:60px;
+    padding-bottom:60px;
+}
+
+#contact {
+    width:640px;
+    Margin: 0 auto;
+    padding-top:60px;
+}
+
+#contact table{
+    border: solid;
+    border-color: #bfbfbf;
+}
+    
+#contact th {
+    border: solid;
+    border-color: #bfbfbf;
+    width:240px;
+    text-align: left;
+    vertical-align: middle;
+    padding-left:16px;
+    padding-top: 8px;
+    padding-right: 64px; 
+    padding-bottom: 8px;
+}
+    
+#contact td {
+    border: solid;
+    border-color: #bfbfbf;
+    width: 400px;
+    text-align: left;
+    padding-left: 8px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+
+#contact td label {
+    display: inline-block;
+}
+
+#contact input[type="text"] {
+    width:328px;
+    height:36px;
+}
+    
+#contact input[type="email"] {
+    width:328px;
+    height:36px;
+}
+
+#contact select {
+    width:328px;
+    height:36px;
+}
+
+#contact checkbox{
+    Width:328px;
+    Height:36px;
+    Border:#bfbfbf;
+}
+
+#contact textarea {
+    width:328px;
+    height:200px;
+}
+    
+.submit-btn{
+    Font-size:18px;
+    width:300px;
+    Height: 60px;
+    Margin-top:30px;
+    transition: .3s;
+    border:none;
+}
+
+.submit-btn:hover {
+    background: #FFD61A;
+    color:white;
+}
+
+#footer {
+    background-color: #707070;
+    padding: 30px 0;
+    margin-top:140px;
+    color:white;
+}
+
+.entitle {
+    font-size: 24px;
+}
+
+.jptitle {
+    font-size: 18px;
+}
+
+.top30 {
+    margin-top: 30px;
+}
+
+.top50 {
+    margin-top: 50px;
+}
+
+.top60 {
+    margin-top: 60px;
+}
+
+.bottom24 {
+    margin-bottom: 24px;
+}
+
+.bottom30 {
+    margin-bottom: 30px;
+}
+
+.bottom40 {
+    margin-bottom: 40px;
+}
+
+.bottom50 {
+    margin-bottom: 50px;
+}
+
+.bottom60 {
+    margin-bottom: 60px;
+}
+
+.bottom80 {
+    margin-bottom: 80px;
+}
