@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<script src="js/jquery-2.1.3.min.js"></script>
+<link rel="stylesheet" href="css/sample.css">
+<title>じゃんけん</title>
+</head>
+<body>
+
+<header>
+  <h1>じゃんけん</h1>
+</header>
+
+<main>
+  <ul>
+    <li id="gu_btn"><img src = "M-j_gu02.png" width="50">グー</li>
+    <li id="cho_btn"><img src = "M-j_ch02.png" width="50">チョキ</li>
+    <li id="par_btn"><img src = "M-j_pa02.png" width="50">パー</li>
+  </ul>
+  <div>
+    <p>コンピュータの出した手は？</p>
+    <p><span id="pc_hands">なに？</span></p>
+</div>
+  <p><span id="judgment">？？？</span></p>
+</main>
+
+<footer></footer>
+<script>
+  // グーの場合の勝負
+  $("#gu_btn").on("click",function(){
+
+      // 乱数の設定
+      const r = Math.ceil(Math.random() * 3);
+
+      // // if処理
+      let view = "";
+      let shoubu = "";
+      if(r==1){
+          view ='<img src = "M-j_gu02.png" width="50">';
+          shoubu = "あいこ";
+      }
+      if(r==2){
+          view = '<img src = "M-j_ch02.png" width="50">';
+          shoubu = "勝ち";
+      }
+      if(r==3){
+          view = '<img src = "M-j_pa02.png" width="50">';
+          shoubu = "負け";
+      }
+
+      // 表示処理
+      $("#pc_hands").html(view);
+      $("#judgment").html(shoubu);
+
+  });
+
+  // チョキの場合の勝負
+  $("#cho_btn").on("click",function(){
+      // alert("ok");
+
+      // 乱数の設定
+      const r = Math.ceil(Math.random() * 3);
+      // alert(r);
+
+      // // if処理
+      let view = "";
+      let shoubu = "";
+      if(r==1){
+          view = '<img src = "M-j_gu02.png" width="50">';
+          shoubu = "負け";
+      }
+      if(r==2){
+          view = '<img src = "M-j_ch02.png" width="50">';
+          shoubu = "あいこ";
+      }
+      if(r==3){
+          view = '<img src = "M-j_pa02.png" width="50">';
+          shoubu = "勝ち";
+      }
+      // alert(view);
+
+      // 表示処理
+      $("#pc_hands").html(view);
+      $("#judgment").html(shoubu);
+
+  });
+
+  // パーの場合の勝負
+  $("#par_btn").on("click",function(){
+      // alert("ok");
+
+      // 乱数の設定
+      const r = Math.ceil(Math.random() * 3);
+      // alert(r);
+
+      // // if処理
+      let view = "";
+      let shoubu = "";
+      if(r==1){
+          view = '<img src = "M-j_gu02.png" width="50">';
+          shoubu = "勝ち";
+      }
+      if(r==2){
+          view = '<img src = "M-j_ch02.png" width="50">';
+          shoubu = "負け";
+      }
+      if(r==3){
+          view = '<img src = "M-j_pa02.png" width="50">';
+          shoubu = "あいこ";
+      }
+      // alert(view);
+
+      // 表示処理
+      $("#pc_hands").html(view);
+      $("#judgment").html(shoubu);
+
+  });
+</script>
+</body>
+</html>
