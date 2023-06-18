@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="css/sample.css">
+    <title>Chatアプリ</title>
+</head>
+
+<body>
+
+    <!-- コンテンツ表示画面 -->
+
+    <main>
+        <div id="header">
+            <img src="imgs/LINE_wording.png" height=50px alt="">
+            <img src="imgs/line_logo_changed2.jpeg" height=50px alt="">
+        </div>
+
+        <div id="screen">
+            <div id="output">
+                <div id="line">
+                    <div id="scroll"></div>
+                </div>
+            </div>
+            <div id="input">
+                <p>メッセージ（Shift+Enterで送信も可能！）</p>
+                <p><textarea name="" id="text" cols="30" rows="10"></textarea></p>
+                <p>
+                    <button id="send">送信</button>
+                </p>
+                <p>スタンプ</p>
+                <p id="stamps">
+                    <img src="imgs/image (01).png" id=img1 class=stamps width="40">
+                    <img src="imgs/image (02).png" id=img2 class=stamps width="40">
+                    <img src="imgs/image (03).png" id=img3 class=stamps width="40">
+                    <img src="imgs/image (04).png" id=img4 class=stamps width="40">
+                </p>
+
+            </div>
+        </div>
+
+    </main>
+
+    <!-- JQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <!-- JQuery -->
+
+
+    <!--** 以下Firebase **-->
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+        import { getDatabase, ref, push, set, onChildAdded, remove, onChildRemoved }
+            from "https://cdnjs.cloudflare.com/ajax/libs/firebase/9.22.2/firebase-database.js";
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            // apiKeyはGithubアップ時は要削除
+            apiKey: "", //githubにアップしちゃダメ
+            authDomain: "mil-kido.firebaseapp.com",
+            projectId: "mil-kido",
+            storageBucket: "mil-kido.appspot.com",
+            messagingSenderId: "1063799575824",
+            appId: "1:1063799575824:web:807acbeea19c455090c195"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+
+        // RealtimeDBに接続する
+        const db = getDatabase(app); // RealtimeDBに接続
+        const dbRef = ref(db, "chat"); // RealtimeDB内の"chat"を使う
+
+        //画面開くと同時にoutput欄を一番下にスクロールし、最新のインプットが何かわかる様に
+        $(function () {
+            $("#scroll").scrollTop($("#scroll")[0].scrollHeight);
+        });
+
+        // // スタンプ処理 ※ギブアップ
+        // $("#stamps").on("click", ".stamps", function () {
+        //     const img = {
+        //         imgs: $(this).attr("src")
+        //     }
+        //     const newPostRef = push(dbRef); // pushできる状態にする
+        //     set(newPostRef, img); // DBに値を送信
+        // });
+
+        // 送信ボタンが押されたら、データをDBに送信
+        $("#send").click(function () {
+            // 保存したいデータのオブジェクトを作る
+            const msg = {
+                text: $("#text").val()
+            }
+            // console.log(msg); // 取得確認
+
+            const newPostRef = push(dbRef); // pushできる状態にする
+            set(newPostRef, msg); // DBに値を送信
+
+            $("#text").val("");
+
+            //ボタン操作と同時にoutput欄を一番下にスクロールし、最新のインプットが何かわかる様に
+            $("#scroll").scrollTop($("#scroll")[0].scrollHeight);
+
+            //ボタン操作と同時に画面全体を一番下にスクロールし、画面サイズにかかわらず、何がインプットされていたかがわかる様に
+            let elm = document.documentElement;
+            let bottom = elm.scrollHeight - elm.clientHeight;
+            window.scroll(0, bottom);
+        });
+
+        // Shift+Enterキーでも実行できる様に
+        $("#text").keypress(function (e) {
+            if (e.shiftKey == true) {
+                $("#send").click();
+            }
+        });
+
+        // outputの更新
+        onChildAdded(dbRef, function (data) { //新しいデータがdbRef内に追加された時≠送信ボタンが押された時
+            const msg = data.val(); //オブジェクト形式で
+            const key = data.key; //ランダムな文字列がkey（NXo〜）
+            const h = `<p id="${key}" class="message"> ${msg.text} </p>`;
+            // const k = `<p id="${key}" class="message"> <img src="${msg.imgs}" width="80"></p>`;
+            // console.log(msg.text);
+            // if (msg.text = "undefined") {
+            //     $("#scroll").append(k);
+            // }
+            // else if (msg.img = "undefined") {
+            $("#scroll").append(h);
+            // };
+
+        });
+
+        // // スタンプ処理（ジョーク機能）
+        // ※本当は、上記コメント化した箇所の様に、スタンプの画像もrealtime databaseに格納し、呼び出したかったのですが出来ず。
+        // やむなく簡易的に対応しました。
+        $("#stamps").on("click", ".stamps", function () {
+            let imgs = $(this).attr("src");
+            const stamps = `<p><img src="${imgs}" class="message" width="80"></p>`
+            $("#scroll").append(stamps);
+        });
+
+        // クリックした項目の削除
+        $("#scroll").on("click", ".message", function () {
+            let id = $(this).attr("id");
+            const chatRef = ref(db, "chat/" + id);
+            console.log(chatRef);
+            remove(chatRef);
+            window.location.reload();//※ギブアップで、都度リロードすることとしました。
+        });
+
+
+
+
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+
+</html>
