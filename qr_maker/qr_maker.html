@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/sample.css">
+    <title>QRcoding</title>
+</head>
+
+<body>
+    <header>オリジナルQRコードメーカー</header>
+    <div id="introduction">
+        あたなの好きなwebサイトや検索したい語句をQRコード化し、QRコード中央に画像を貼り付けてオリジナルのQRコードが作れます！<br>
+        ダウンロードして、使ってね！
+    </div>
+    <div id="input">
+        <input type="text" id="qr_input" name="" value="" placeholder="URLや検索したい語句を入力してください">
+        <input type="file" id="qr_img" name="" value="" accept=".png, .jpg, .jpeg" placeholder="アップロードしたい画像を選択してください">
+        <button type="button" id="button">作成！</button>
+    </div>
+    <div id="output"></div>
+    <button class="hidden" type="button" id="down" onclick="download()">Download</button>
+    <a class="hidden" id="link"></a>
+
+
+    <!-- JQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <!-- JQuery -->
+
+    <!-- QRcode ライブラリ -->
+    <script src="js/jquery.qrcode.min.js" charset="utf-8"></script>
+    <!-- QRcode ライブラリ  -->
+
+    <!-- QR Code Styling ライブラリ -->
+    <script src="https://unpkg.com/qr-code-styling@1.5.0/lib/qr-code-styling.js"></script>
+    <!-- QR Code Styling ライブラリ -->
+
+    <!-- 自家製JSは別ファイルに -->
+    <script src="js/qr-code2.js" charset="utf-8"></script>
+    <!-- 自家製JSは別ファイルに -->
+
+</body>
+
+</html>
